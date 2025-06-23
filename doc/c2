@@ -1,0 +1,27 @@
+# C2 : Recursos
+
+## Animal:
+* id: integer (chave primária)
+* nome: string
+* especie: string
+* idade: integer
+* jaulaId: integer (chave estrangeira)
+
+## Funcionário:
+* id: integer (chave primária)
+* nome: string
+* googleId: string
+* email: string
+* cargo: string
+* salario: decimal
+* dataContrato: date
+
+## Jaula:
+* id: integer (chave primária)
+* localizacao: string
+* tamanho: string
+* funcionarioId: integer
+
+---
+[< Previous](c1.md) | [^ Main](../../../) | [Next >](c3.md)
+:--- | :---: | ---:
