@@ -1,0 +1,23 @@
+# C3 : Produto
+
+# 3.1 Desenvolvimento
+
+Foi desenvolvida uma API com uma abordagem code-first para realizar a gestão de jardins zoológicos, recorrendo à framework LoopBack 4 e à tecnologia OAuth 2.0 (Google Identity Platform) para autenticação e autorização de utilizadores. A API foi integrada com uma base de dados e o frontend desenvolvido com Reactjs. Todas as componentes foram containerizadas, permitindo a sua execução em qualquer máquina.
+
+# 3.2 Instalação
+
+* Passo 1: Abrir a linha de comandos.
+* Passo 2: Executar o comando "docker compose up", dentro da pasta src.
+
+# 3.3 Instruções de Utilização
+
+* Abrir o link "http://localhost:3006".
+
+# 3.4 Implementação
+
+* [Dockerfile](../src/dockerfile) - Dockerfile.
+* [compose.yaml](../src/docker-compose.yml) - Junção dos containers.
+
+---
+[< Previous](c2.md) | [^ Main](../../../) | Next >
+:--- | :---: | ---:
