@@ -1,0 +1,22 @@
+# C1: API - Gestão de Jardim Zoológico
+
+## Descrição
+
+Esta API é focada na gestão de jardins zoológicos, contendo os seguintes recursos:
+
+- Animal
+- Funcionário
+- Jaula
+
+Feita em LoopBack 4, baseada na arquitetura REST, documentada com recurso ao formato OpenAPI e com uso de OAuth 2.0 (via Google Identity Platform) para autenticação e autorização.  O frontend foi desenvolvido com recurso à biblioteca ReactJS.
+
+## Grupo 03
+
+- Rafael Ribeiro Morim Cabreira
+- Rafael Pinheiro de Oliveira
+- António Filipe Sampaio Castro Ferreira
+
+---
+
+| < Previous | [^ Main](../../../) | [Next >](c2.md)|
+| :--------- | :----: | -----: |
