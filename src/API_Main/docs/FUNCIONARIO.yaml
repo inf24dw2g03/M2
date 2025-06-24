@@ -1,0 +1,122 @@
+paths:
+  /Funcionario:
+    get:
+      tags:
+      - FuncionarioController
+      summary: Retrieve all Funcionarios
+      operationId: retrieveAllFuncionarios
+      responses:
+        "200":
+          description: Array of Funcionario model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Funcionario'
+        "500":
+          description: Erro ao buscar funcionários
+    post:
+      tags:
+      - FuncionarioController
+      summary: Create a new Funcionario
+      operationId: createFuncionario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+      responses:
+        "201":
+          description: Funcionario criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Funcionario'
+        "400":
+          description: Dados inválidos para criação
+  /Funcionario/{id}:
+    get:
+      tags:
+      - FuncionarioController
+      summary: Retrieve Funcionario by ID
+      operationId: retrieveFuncionarioById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Funcionario'
+        "404":
+          description: Funcionario não encontrado
+    put:
+      tags:
+      - FuncionarioController
+      summary: Update Funcionario by ID
+      operationId: updateFuncionario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+      responses:
+        "200":
+          description: Funcionario atualizado com sucesso
+        "400":
+          description: Dados inválidos para atualização
+        "404":
+          description: Funcionario não encontrado
+    delete:
+      tags:
+      - FuncionarioController
+      summary: Delete Funcionario by ID
+      operationId: deleteFuncionario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Funcionário removido com sucesso
+        "404":
+          description: Funcionario não encontrado
+components:
+  schemas:
+    Funcionario:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        cargo:
+          type: string
+        salario:
+          type: number
+          format: float
+        datacontrato:
+          type: string
+          format: date
+      required:
+        - name
+        - cargo
+        - salario
+        - datacontrato

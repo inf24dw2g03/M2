@@ -1,0 +1,113 @@
+paths:
+  /Animal:
+    get:
+      tags:
+      - AnimalController
+      summary: Retrieve all animals
+      operationId: retrieveAllAnimals
+      responses:
+        "200":
+          description: Array of Animal model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Animal'
+    post:
+      tags:
+      - AnimalController
+      summary: Create a new Animal
+      operationId: createAnimal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+      responses:
+        "201":
+          description: Animal criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+  /Animal/{id}:
+    get:
+      tags:
+      - AnimalController
+      summary: Retrieve animal by ID
+      operationId: retrieveAnimalById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Animal encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+        "404":
+          description: Animal não encontrado
+    put:
+      tags:
+      - AnimalController
+      summary: Update Animal by ID
+      operationId: updateAnimal
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+      responses:
+        "200":
+          description: Animal atualizado com sucesso
+        "404":
+          description: Animal não encontrado
+    delete:
+      tags:
+      - AnimalController
+      summary: Delete Animal by ID
+      operationId: deleteAnimal
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Animal removido com sucesso
+components:
+  schemas:
+    Animal:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        especie:
+          type: string
+        idade:
+          type: integer
+        jaulaId:
+          type: integer
+      required:
+        - name
+        - especie
+        - idade
+        - jaulaId

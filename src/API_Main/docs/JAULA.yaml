@@ -1,0 +1,138 @@
+paths:
+  /Jaula:
+    get:
+      tags:
+      - JaulaController
+      summary: Retrieve all Jaulas
+      operationId: getAllJaulas
+      responses:
+        "200":
+          description: Array of Jaula model instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Jaula'
+        "500":
+          description: Erro ao buscar jaulas
+    post:
+      tags:
+      - JaulaController
+      summary: Create a new Jaula
+      operationId: createJaula
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Jaula'
+      responses:
+        "201":
+          description: Jaula criada com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Jaula'
+        "400":
+          description: Dados inválidos para criação da Jaula
+  /Jaula/{id}:
+    get:
+      tags:
+      - JaulaController
+      summary: Retrieve Jaula by ID
+      operationId: getJaulaById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Jaula encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Jaula'
+        "404":
+          description: Jaula não encontrada
+    put:
+      tags:
+      - JaulaController
+      summary: Update Jaula by ID
+      operationId: updateJaula
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Jaula'
+      responses:
+        "200":
+          description: Jaula atualizada com sucesso
+        "400":
+          description: Dados inválidos para atualização da Jaula
+        "404":
+          description: Jaula não encontrada
+    delete:
+      tags:
+      - JaulaController
+      summary: Delete Jaula by ID
+      operationId: deleteJaula
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: Jaula removida com sucesso
+        "404":
+          description: Jaula não encontrada
+  /Jaula/{jaulaId}/animais:
+    get:
+      tags:
+        - JaulaController
+      summary: Listar todos os animais de uma jaula específica
+      operationId: getAnimaisByJaula
+      parameters:
+        - name: jaulaId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Lista de animais pertencentes à jaula
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Animal'
+        "404":
+          description: Jaula não encontrada
+components:
+  schemas:
+    Jaula:
+      type: object
+      properties:
+        id:
+          type: integer
+        localizacao:
+          type: string
+        tamanho:
+          type: string
+      required:
+        - localizacao
+        - tamanho

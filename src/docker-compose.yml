@@ -1,0 +1,52 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: Zoologico_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: zoologico
+      GOOGLE_CLIENT_ID: 562779304866-f5tgh8gobj7vmbfq2lh5lljlr53sv4bp.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: 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
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./API_Main/db/zoologico.sql:/docker-entrypoint-initdb.d/zoologico.sql
+    networks:
+      - Zoo-network
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: Zoo_app
+    build: ./API_Main
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 12345678
+      DB_NAME: zoologico
+    ports:
+      - 3000:3000
+    networks:
+      - Zoo-network
+
+  react:
+    container_name: Zoologico_react
+    build: .
+    ports:
+      - 3006:3000
+    depends_on:
+      - app
+
+volumes:
+  mysql_data:
+
+networks:
+  Zoo-network:
